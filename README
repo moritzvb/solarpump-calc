@@ -1,0 +1,46 @@
+    (C) 2013 Moritz v. Buttlar, moritz@opensource-solar.org
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
+NO GUARANTEE THAT THE RESULTS ARE RIGHT ! IF YOU FIND ERRORS, PLEASE TELL ME
+ABOUT IT !
+
+
+USAGE:
+
+- download relevant solar irridiation data for your location from http://rredc.nrel.gov/solar/new_data/India/
+  (if you are in India; data might be available for other locations as well). 
+
+- use the command 'tar -zxvf datafile' to unpack the data
+
+- adjust the python script for your pump parameters and water conditions
+(see details in the script file about the various parameters)
+
+- standard pump data: for a 3x3 inch Agnimotors prototype employed in Bihar
+
+- run the script with the according .csv file name as a parameter and it will output the amount
+of water pumped for each of the 12 month in the according year (in a linux
+shell: './solar_pump_calc.py datafile_2010.csv > 2010.txt' uses the csv file
+as an input and saves the results in 2010.txt.
+
+
+DATA
+
+One Data set (source: NREL, see http://rredc.nrel.gov/solar/new_data/India/
+for conditions of use) was included for a region in BIHAR and the year 2011.
+Full data sets are provided by NREL.
+
+
