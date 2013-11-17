@@ -27,10 +27,10 @@ def depth(month):
     if (month==1): return 6;
     if (month==2): return 6;
     if (month==3): return 6;
-    if (month==4): return 5;
-    if (month==5): return 5;
-    if (month==6): return 5;
-    if (month==7): return 5;
+    if (month==4): return 6;
+    if (month==5): return 6;
+    if (month==6): return 6;
+    if (month==7): return 6;
     if (month==8): return 6;
     if (month==9): return 6;
     if (month==10): return 6;
@@ -39,25 +39,26 @@ def depth(month):
 
 def pump(power,month):
 # factors for lower then optimal power of the pump
+# NEW: use of the affinity laws (see http://en.wikipedia.org/wiki/Affinity_laws)
+# - flow is proportional to shaft speed: Q1/Q2=N1/N2
+# - head (pressure) is proportional to the square of the shaft speed: H1/H2=(N1/N2)^2
+# - power is proportional to the cube of the shaft speed: P1/P2=(N1/N2)^3
     faktor=0;
-    if (power>=740):
-        faktor=1;
-    if ((power>600) & (power<=739)):
-        faktor=0.8;
-    if ((power>500) & (power<=600)):
-        faktor=0.7;
-    if ((power>400) & (power<=500)):
-        faktor=0.4;
-    if ((power>300) & (power<=400)):
-        faktor=0.0;
+    if (power>400.0):
+     faktor=(power/750.0)**(float(1.0/3.0));
+    Q1=0;
 # head/flowrate in l/min curve for the Agnimotors 3x3 inch prototype; return hourly liters
-    if depth(month)==3: return 680*faktor*60;
-    if depth(month)==4: return 630*faktor*60;
-    if depth(month)==5: return 624*faktor*60;
-    if depth(month)==6: return 580*faktor*60;
-#estimated
-    if depth(month)==7: return 500*faktor*60;
-    if depth(month)==8: return 400*faktor*60;
+    if depth(month)==3: Q1=680;
+    if depth(month)==4: Q1=630;
+    if depth(month)==5: Q1=624;
+    if depth(month)==6: Q1=580;
+#estimated 
+    if depth(month)==7: Q1=500; #*1/sqrt(6/7);
+    if depth(month)==8: Q1=0; #*1/sqrt(6/8);
+#    print faktor;
+#    print Q1;
+    return Q1*faktor*60.0;
+    
     print 'error'
     return 0;
     
